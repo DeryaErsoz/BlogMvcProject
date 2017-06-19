@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+     
+
+        @ViewBag.Title
+       
+   </title>
+
+    <!--( a ) Fav Icon -->
+    <link rel="icon" href="@Url.Content("~/Content/images/icon/fav_icon.gif")">
+    @Styles.Render("~/bundles/style")
+</head>
+<body>
+
+        @RenderBody()
+
+  @Scripts.Render("~/bundles/scripts")
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwMBNgNkFDunUXlb0QH8IAqmmPMOLZjf8"></script>
+    <script>
+        window.viewportUnitsBuggyfill.init({
+            refreshDebounceWait: 50,
+            hacks: window.viewportUnitsBuggyfillHacks
+        });
+    </script>
+    @RenderSection("scripts", false)
+    
+</body>
+</html>
+

@@ -1,0 +1,125 @@
+﻿@model BlogMvcProject.Models.Resume
+@{
+    ViewBag.Title = "AdminResume";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Menu {
+    @Scripts.Render("~/Scripts/Forms/Editors/menu")
+}
+@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
+<div class="alert alert-success alert-dismissible" id="divsuccess" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-check"></i>Resume Alert</h4>
+    Your resume is updated.
+</div>
+<div class="alert alert-danger alert-dismissible" id="diverror" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-ban"></i>Resume Alert</h4>
+    Your resume isn't updated.
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Resume
+                    <small>EDUCATION Text Update</small>
+                </h3>
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body pad">
+
+                @using (Ajax.BeginForm("AdminResume", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "successResume" }, new { id = "formResume" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                        @Html.TextBoxFor(m => m.School, new { @class = "form-control", placeholder = "Enter name of school" })
+                        @Html.ValidationMessageFor(m => m.School)
+                    </div>
+
+                    <br />
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        @Html.EditorFor(m => m.StartDate, new { @class = "form-control", placeholder = "Enter start date" })
+                        @Html.ValidationMessageFor(m => m.StartDate)
+                    </div>
+
+
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        @Html.EditorFor(m => m.EndDate, new { @class = "form-control", placeholder = "Enter end date" })
+                        @Html.ValidationMessageFor(m => m.EndDate)
+                    </div>
+
+
+                    <br />
+
+                    <div class="input-group">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter description ", rows = "10", cols = "300" })
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+
+                    <br />
+                    <div class="pull-right box-tools">
+                        <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip" title="Save">
+                            <i class="fa fa-check-square-o"></i>Save
+                        </button>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        @{Html.RenderAction("_AdminExperience", "Admin");}
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/ckeditor/js")
+    @Scripts.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/js")
+    @Scripts.Render("~/Scripts/Forms/Editors")
+    @Scripts.Render("~/Scripts/date")
+    @Styles.Render("~/Content/date")
+}
+
+
+@section scriptsAlert{
+
+    <script type="text/javascript">
+        function successResume(result) {
+            if (result.IsSuccess == true) {
+
+                $("#divsuccess").show();
+            } else {
+                $("#diverror ").show();
+            }
+        }
+
+        function successExperience(result) {
+            if (result.IsSuccess == true) {
+
+                $("#divsuccessExperience").show();
+            } else {
+                $("#diverrorExperience").show();
+            }
+        }
+    </script>
+}
+
+
+

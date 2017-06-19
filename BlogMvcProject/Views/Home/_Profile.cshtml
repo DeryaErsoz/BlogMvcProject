@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BlogMvcProject.Models.Profile>
+@{
+    ViewBag.Title = "_Profile";
+}
+<!--=============
+  Profile Page
+  ==============-->
+
+<div class="profile-page">
+
+    <!--( a ) Profile Page Fixed Image Portion -->
+
+    <div class="image-container col-md-5 col-sm-12">
+        <div class="mask">
+        </div>
+        <div class="main-heading">
+            <h1>PR<span>O</span>FILE</h1>
+        </div>
+    </div>
+
+    <!--( b ) Profile Page Content -->
+
+    <div class="content-container col-md-7 col-sm-12">
+
+        <!--( A ) Story of Glory -->
+
+        <div class="story clearfix">
+            <h2 class="small-heading">STORY OF GLORY</h2>
+            <div class="col-lg-11 col-lg-offset-1">
+                <div class="story-content clearfix">
+                    <img alt="" src="~/Content/images/dp.jpg" class="col-xs-offset-1 col-sm-offset-0 col-sm-4 col-xs-10">
+                    <div class="col-sm-8 col-xs-12">
+                        <h3>AN AWESOME DESIGNER ON PLANET</h3>
+                        @foreach (var item in Model)
+                        {
+
+                            <p>
+                              @Html.Raw(@item.Description)
+                            </p>
+                        }
+                        @*<a href="#" class="hire-me">*Hire Me*</a>*@
+               
+                        @*@Ajax.ActionLink(
+                            "load partial view",
+                            "_Contact",
+                            "Home",
+                            new AjaxOptions { UpdateTargetId = "ContactPage" }
+                        )*@
+                        @Html.ActionLink("Download Resume", "DownloadFile")
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        @{Html.RenderAction("_Skills", "Home"); }
+    </div>
+</div>

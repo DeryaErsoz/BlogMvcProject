@@ -1,0 +1,35 @@
+﻿  
+@model IEnumerable<BlogMvcProject.Models.Experience>
+ <!--( B ) Experience Section -->
+
+<div class="experience clearfix">
+    <h2 class="small-heading">EXPERIENCE</h2>
+    <div class="experience-container col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1">
+
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="bullet hidden-xs">
+                </div>
+                <div class="experience-content">
+                    <h3>
+                        @item.TitleofJob<span>
+                            / @item.StartDate.ToString("MMMM") @item.StartDate.Year.ToString() - @item.EndDate.ToString("MMMM") @item.EndDate.Year.ToString()<br>
+                            @item.Company
+                        </span>
+                    </h3>
+                    <p>
+                      @item.Description
+                    </p>
+                </div>
+            </div>
+        }
+     
+
+        <!-- Single Experience Item [ END ] -->
+
+
+
+    </div>
+</div>
+

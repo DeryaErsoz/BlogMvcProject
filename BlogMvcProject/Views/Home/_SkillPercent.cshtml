@@ -1,0 +1,25 @@
+﻿  
+@model IEnumerable<BlogMvcProject.Models.Skill>
+  <!--( C ) Skills Section -->
+
+<div class="skills clearfix">
+    <h2 class="small-heading">SKILLS</h2>
+    <div class="clearfix">
+        @foreach (var item in Model)
+        {
+            <div class="skill-container col-sm-4">
+                <h3>@item.Name</h3>
+                <div class="skill" data-percent="60">
+                    <span>@item.Percent</span>
+                </div>
+            </div>
+
+        }
+       
+        <!-- Single Skills Item [ END ] -->
+
+
+    </div>
+</div>
+<!--( C ) Footer Section -->
+@Html.Partial("_Footer", Model)

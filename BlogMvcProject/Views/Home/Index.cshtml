@@ -1,0 +1,166 @@
+﻿@model IEnumerable<BlogMvcProject.Models.User>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--===========
+   2 ) Preloader
+   ============-->
+<div id="preloader">
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+
+    <div class="home-page">
+
+        <!--( a ) Introduction -->
+
+        <div class="introduction">
+            <img alt="" src="~/Content/images/home_dp.jpg">
+            <div class="mask">
+            </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="intro-content">
+                <h1>
+                    HELLO<br>
+                    I'M
+                    <span> @item.Name</span>  @item.Surname
+                    
+                </h1>
+
+                 <h2>@item.JobTitle</h2>
+
+
+                <p class="social-media hidden-xs">
+                    <a href="@item.FaceAccount" class="fa fa-facebook" data-toggle="tooltip" title="Facebook"></a>
+                    <a href="@item.TwitterAccount" class="fa fa-twitter" data-toggle="tooltip" title="Twitter"></a>
+                    <a href="@item.GoogleAccount" class="fa fa-plus" data-toggle="tooltip" title="Google+"></a>
+                    <a href="@item.LinkedinAccount" class="fa fa-linkedin" data-toggle="tooltip" title="Linkedin"></a>
+                    <a href="@item.InstagramAccount" class="fa fa-instagram" data-toggle="tooltip" title="Instagram"></a>
+                </p>
+
+                <!-- Social Media Icons [ END ] -->
+
+            </div>
+            }
+        </div>
+
+        <!-- ( b ) Navigation Menu -->
+
+        <div class="menu">
+            <div class="profile-btn">
+                <img alt="" src="~/Content/images/menu/profile_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>PR<span>O</span>FILE</h2>
+                        <h3>Some words about me.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="resume-btn">
+                <img alt="" src="~/Content/images/menu/resume_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>RE<span>S</span>UME</h2>
+                        <h3>Something about my experience and skills.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="portfolio-btn">
+                <img alt="" src="~/Content/images/menu/portfolio_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-briefcase"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>PORT<span>F</span>OLIO</h2>
+                        <h3>Have a spoon of my work.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+            <div class="contact-btn">
+                <img alt="" src="~/Content/images/menu/contact_btn.jpg">
+                <div class="mask">
+                </div>
+                <div class="heading col-xs-11 col-xs-offset-1">
+                    <div class="col-xs-2 hidden-xs">
+                        <i class="fa fa-envelope-o"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <h2>CO<span>N</span>TACT</h2>
+                        <h3>Say hello or find me.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Navigation Menu Button [ END ]  -->
+
+        </div>
+    </div>
+
+
+
+
+<!--=============
+4 ) Close Button
+==============-->
+
+<div class="close-btn"></div>
+
+@{Html.RenderAction("_Profile", "Home"); }
+@{Html.RenderAction("_Resume", "Home"); }
+@{Html.RenderAction("_Portfolio", "Home"); }
+@{Html.RenderAction("_Contact", "Home"); }
+
+
+@section scripts{
+
+    <script type="text/javascript">
+         function success(result) {
+             if (result.IsSuccess == true) {
+
+                 $("#formContact")[0].reset();
+                 $("#successmessage ").show().html("<h3>" + result.UserMessage + "</h3>");
+
+             } else {
+                 $("#errormessage ").show().html("<h3>" + result.UserMessage + "</h3>");
+             }
+        }
+
+        function standby() {
+            document.getElementById('foo').src = 'https://www.google.com/images/srpr/logo11w.png'
+        }
+
+
+    </script>
+
+ }

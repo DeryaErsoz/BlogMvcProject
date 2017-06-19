@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BlogMvcProject.Models.User>
+
+   
+
+    <div class="contact-details clearfix">
+        <h2 class="small-heading">CONTACT DETAILS</h2>
+@foreach (var item in Model)
+{
+        <div class="contact col-sm-4">
+            <p>
+                <i class="fa fa-map-marker"></i><br>
+                @item.Location
+            </p>
+        </div>
+
+        <!-- Single Contact Details Item [ END ] -->
+
+        <div class="contact col-sm-4">
+            <p>
+                <i class="fa fa-phone"></i><br>
+                @item.Phone
+            </p>
+        </div>
+
+        <!-- Single Contact Details Item [ END ] -->
+        @*<div class="contact col-sm-4">
+                <p>
+                    <i class="fa fa-fax"></i><br>
+                    +00 000 0000 000
+                </p>
+            </div>*@
+
+        <!-- Single Contact Details Item [ END ] -->
+        @*<div class="contact col-sm-4">
+                <p>
+                    <i class="fa fa-phone"></i><br>
+                    +00 000 0000 000
+                </p>
+            </div>*@
+
+        <!-- Single Contact Details Item [ END ] -->
+
+        <div class="contact col-sm-4">
+            <p>
+                <i class="fa fa-envelope"></i><br>
+                @item.Email
+            </p>
+        </div>
+
+        <!-- Single Contact Details Item [ END ] -->
+        @*<div class="contact col-sm-4">
+                <p>
+                    <i class="fa fa-globe"></i><br>
+                    www.example.com
+                </p>
+            </div>*@
+
+        <!-- Single Contact Details Item [ END ] -->
+
+        <div class="col-xs-12 social-media">
+            <a href="#" class="fa fa-facebook" data-toggle="tooltip" title="Facebook"></a>
+            <a href="#" class="fa fa-twitter" data-toggle="tooltip" title="Twitter"></a>
+            <a href="#" class="fa fa-plus" data-toggle="tooltip" title="Google+"></a>
+            <a href="#" class="fa fa-linkedin" data-toggle="tooltip" title="Linkedin"></a>
+            <a href="#" class="fa fa-behance" data-toggle="tooltip" title="Behance"></a>
+            <a href="#" class="fa fa-flickr" data-toggle="tooltip" title="Flicker"></a>
+            <a href="#" class="fa fa-instagram" data-toggle="tooltip" title="Instagram"></a>
+        </div>
+
+        <!-- Social Media Icons [ END ] -->
+}
+    </div>
+
+

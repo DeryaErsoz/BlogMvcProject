@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BlogMvcProject.Models.Resume>
+<!--=============
+  Resume Page
+ ===============-->
+
+
+<div class="resume-page">
+
+    <!--( a ) Resume Page Fixed Image Portion -->
+
+    <div class="image-container col-md-5 col-sm-12">
+        <div class="mask">
+        </div>
+        <div class="main-heading">
+            <h1>RE<span>S</span>UME</h1>
+        </div>
+    </div>
+
+    <!--( b ) Resume Page Content -->
+
+    <div class="content-container col-md-7 col-sm-12">
+
+        <!--( A ) Education Section -->
+
+        <div class="education clearfix">
+            <h2 class="small-heading">EDUCATION</h2>
+
+            <div class="education-container col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1">
+                @foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="bullet hidden-xs">
+                        </div>
+                        <div class="education-content">
+                            <h3>@item.School<span> / @item.StartDate.ToString("MMMM") @item.StartDate.Year.ToString() - @item.EndDate.ToString("MMMM") @item.EndDate.Year.ToString()</span></h3>
+                            <p>
+                                @item.Description
+                            </p>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+        @{Html.RenderAction("_Experience", "Home"); }
+        @{Html.RenderAction("_SkillPercent", "Home"); }
+
+    </div>
+
+</div>
+
+
+

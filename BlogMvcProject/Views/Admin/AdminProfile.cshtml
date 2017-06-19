@@ -1,0 +1,93 @@
+﻿@model BlogMvcProject.Models.Profile
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Profile";
+}
+@section Menu {
+    @Scripts.Render("~/Scripts/Forms/Editors/menu")
+}
+@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
+<div class="alert alert-success alert-dismissible" id="divsuccess" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-check"></i>Profile Alert</h4>
+    Your profile is updated.
+</div>
+<div class="alert alert-danger alert-dismissible" id="diverror" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-ban"></i>Profile Alert</h4>
+    Your profile isn't updated.
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Profile
+                    <small>Profile Text Update</small>
+                </h3>
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body pad">
+
+                @using (Ajax.BeginForm("AdminProfile", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "successProfile" }, new { id = "formProfile" }))
+                  {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+
+                    @Html.TextAreaFor(m => m.Description, new { name = "editor1", id = "editor1", rows = "10", cols = "180" })
+                    @Html.ValidationMessageFor(x => x.Description)
+
+                    <br />
+                    <div class="pull-right box-tools">
+                        @*<input class="btn btn-default btn-sm" style="background-color:#00B6F9" data-widget="remove" type="submit" value="UPDATE" />*@
+                        <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip" title="Update">
+                            <i class="fa fa-check-square-o"></i>Update
+                        </button>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+       
+        @{Html.RenderAction("_AdminSkill", "Admin");}
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/ckeditor/js")
+    @Scripts.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/js")
+    @Scripts.Render("~/Scripts/Forms/Editors")
+}
+
+
+@section scriptsAlert{
+
+    <script type="text/javascript">
+        function successProfile(result) {
+            if (result.IsSuccess == true ) {
+
+                $("#divsuccess").show();
+            } else {
+                $("#diverror ").show();
+            }
+        }
+        function successSkill(result) {
+            if (result.IsSuccess == true) {
+
+                $("#divsuccessSkill").show();
+            } else {
+                $("#diverrorSkill").show();
+            }
+        }
+    </script>
+
+}

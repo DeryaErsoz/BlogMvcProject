@@ -1,0 +1,84 @@
+﻿@model BlogMvcProject.Models.FeedBack
+<!--==============
+8 ) Contact Page
+===============-->
+<div class="contact-page" id="ContactPage">
+
+    <!--( a ) Contact Page Fixed Image Portion -->
+
+    <div class="image-container col-md-5 col-sm-12">
+        <div class="mask">
+        </div>
+        <div class="main-heading">
+            <h1>CO<span>N</span>TACT</h1>
+        </div>
+    </div>
+
+    <!--( b ) Contact Page Content -->
+
+    <div class="content-container col-md-7 col-sm-12">
+
+        <!--( A ) Contact Form -->
+
+        <div>
+            <h2 class="small-heading">SAY HELLO!</h2>
+            @using (Ajax.BeginForm("_Contact", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "success" }, new { id = "formContact" }))
+            {
+                    @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true)
+                        <div class="contact-form col-sm-11 clearfix">
+                            <div class="contactForm">
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(x => x.NameSurname,null, new { placeholder = "Your Name Surname*" })
+                                    @Html.ValidationMessageFor(x => x.NameSurname)
+                                </div>
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(x => x.Email,null, new { placeholder = "Your Email*" })
+                                    @Html.ValidationMessageFor(x => x.Email)
+
+                                </div>
+                                <div class="col-sm-12">
+
+                                        @Html.TextAreaFor(x => x.Comment, new { placeholder = "Your Message*" })
+                                        @Html.ValidationMessageFor(x => x.Comment)
+
+                                </div>
+
+
+
+                                <div class="col-xs-12">
+                                        <input class="btn btn-xs" style="width:20%;background-color:#00B6F9" type="submit" value="SEND" />
+
+                                    </div>
+
+                                <div  id="successmessage" class="success col-xs-12">
+
+                                </div>
+                                <div id="errormessage" class="error col-xs-12">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        }
+
+
+            <!-- Contact Form [ END ] -->
+        </div>
+
+        <!--( B ) Google Map -->
+
+        <div class="google-map" id="google-map"></div>
+
+
+        @{Html.RenderAction("_ContactInfo", "Home"); }
+
+
+        <!--( C ) Contact Details -->
+        @Html.Partial("_Footer", Model)
+
+    </div>
+</div>
+
+

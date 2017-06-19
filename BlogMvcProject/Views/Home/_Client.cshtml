@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BlogMvcProject.Models.Client>  
+     <!--( B ) Testimonials Section -->
+
+<div class="testimonials clearfix">
+    <h2 class="small-heading">SOME WORDS FROM CLIENTS</h2>
+    <div class="testimonials-container col-sm-10 col-sm-offset-1">
+        <div class="owl-carousel">
+            @foreach (var item in Model)
+            {
+                <div>
+                    <p>
+                        <i class="fa fa-quote-left"></i>@item.Comment<i class="fa fa-quote-right"></i>
+                    </p>
+                    <h3>@item.NameSurname</h3>
+                </div>
+            }
+            
+
+            <!-- Single Testimonial Item [ END ] -->
+
+
+        </div>
+    </div>
+</div>

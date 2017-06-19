@@ -1,0 +1,132 @@
+﻿@model BlogMvcProject.Models.Portfolio
+@{
+    ViewBag.Title = "PortfoliolListEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section Menu {
+    @Scripts.Render("~/Scripts/Forms/Editors/menu")
+}
+@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
+<div class="alert alert-success alert-dismissible" id="divsuccess" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-check"></i>Portfolio Alert</h4>
+    Your portfolio is updated.
+</div>
+<div class="alert alert-danger alert-dismissible" id="diverror" style="display:none">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4><i class="icon fa fa-ban"></i>Portfolio Alert</h4>
+    Your portfolio isn't updated.
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Portfolio
+                    <small>Portfolio Text Update</small>
+                </h3>
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body pad">
+                @using (Ajax.BeginForm("PortfolioListEdit", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "successAdminPortfolio" }, new { id = "formAdminPortfolio" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+            
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                        @Html.TextBoxFor(m => m.ProjectName, new { @class = "form-control", placeholder = "Enter name" })
+                        @Html.ValidationMessageFor(m => m.ProjectName)
+                    </div>
+
+                    <br />
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-image"></i></span>
+                        @Html.TextBoxFor(m => m.LinkofImage, new { @class = "form-control", placeholder = "Enter link of image " })
+                        @Html.ValidationMessageFor(model => model.LinkofImage)
+                    </div>
+
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file-archive-o"></i></span>
+                        @Html.TextBoxFor(m => m.ImagePath, new { @class = "form-control", placeholder = "Enter imagepath" })
+                        @Html.ValidationMessageFor(m => m.ImagePath)
+                    </div>
+
+                    <br />
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+                        @Html.DropDownListFor(m => m.TypeID, ViewBag.Types as SelectList, "Select Type", new { @class = "form-control", style = "width: 250px;" })
+                        @Html.ValidationMessageFor(m => m.TypeID)
+                    </div>
+
+                    <br />
+
+                    <div class="input-group">
+
+                        Is Active?
+                        <br />
+                        @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IsActive)
+                    </div>
+
+                    <br />
+
+                    <div class="input-group">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter description ", rows = "10", cols = "300" })
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+
+                        <br />
+                        <div class="pull-right box-tools">
+                            <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip" title="Save">
+                                <i class="fa fa-check-square-o"></i>Save
+                            </button>
+                        </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/ckeditor/js")
+    @Scripts.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/js")
+    @Scripts.Render("~/Scripts/Forms/Editors")
+    @Scripts.Render("~/Scripts/date")
+    @Styles.Render("~/Content/date")
+
+
+}
+
+
+@section scriptsAlert{
+
+    <script type="text/javascript">
+        function successAdminPortfolio(result) {
+            if (result.IsSuccess == true) {
+
+                $("#divsuccess").show();
+            } else {
+                $("#diverror ").show();
+            }
+        }
+
+
+    </script>
+}
+
+
+
+

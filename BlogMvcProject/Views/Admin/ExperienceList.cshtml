@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BlogMvcProject.Models.Experience>
+@{
+    ViewBag.Title = "ExperienceList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@section Menu {
+    @Scripts.Render("~/Scripts/Tables/Data/menu")
+}
+
+@Styles.Render("~/AdminLTE/plugins/datatables/css")
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Experience List</h3>
+            </div>
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.TitleofJob)</th>
+                            <th>@Html.DisplayNameFor(model => model.Company)</th>
+                            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.EndDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>Is Active?</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.TitleofJob</td>
+                                <td>@item.Company</td>
+                                <td>@item.StartDate.ToShortDateString()</td>
+                                <td>@item.EndDate.ToShortDateString()</td>
+                                <td>@item.Description</td>
+                                @if (@item.IsActive == true)
+                                {
+                                    <td><button class="btn btn-success"><i class="fa fa-check"></i></button></td>
+                                }
+                                else
+                                {
+                                    <td><button class="btn btn-warning"><i class="fa fa-remove"></i></button></td>
+                                }
+                                <td>
+                                    @Html.ActionLink("Edit", "ExperienceListEdit", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "ExperienceListDelete", new { id = item.ID })
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js")
+    @Scripts.Render("~/Scripts/Tables/Data")
+}
+
+
+
+

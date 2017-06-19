@@ -1,0 +1,10 @@
+﻿@model IEnumerable<BlogMvcProject.Models.JobPositionType>
+<div class="project-controls">
+    <button class="filter" data-filter="all">All</button>
+    @foreach (var item in Model)
+    {
+      
+                    <button class="filter" data-filter="@item.ID">@item.TypeName</button>
+    }
+</div>
+
